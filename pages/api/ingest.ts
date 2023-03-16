@@ -33,6 +33,7 @@ export async function handler(req: NextApiRequest, res: NextApiResponse) {
   })
 
   const openaiApiKey = fields["openai-api-key"]
+  const pineconeEnvironment = fields["pinecone-environment"]
   const pineconeApiKey = fields["pinecone-api-key"]
 
   const docs = await Promise.all(
@@ -66,7 +67,7 @@ export async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
     const pinecone = new PineconeClient()
     await pinecone.init({
-      environment: "us-west1-gcp",
+      environment: pineconeEnvironment,
       apiKey: pineconeApiKey,
     })
 

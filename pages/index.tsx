@@ -45,6 +45,7 @@ export default function IndexPage() {
     const formData = new FormData()
     formData.append("openai-api-key", cookieValue.openaiApiKey)
     formData.append("pinecone-api-key", cookieValue.pineconeApiKey)
+    formData.append("pinecone-environment", cookieValue.pineconeEnvironment)
     Array.from(files).forEach((file: File) => {
       formData.append(file.name, file)
     })
@@ -253,6 +254,7 @@ export default function IndexPage() {
                 !githubUrl ||
                 isUploading ||
                 !cookieValue.openaiApiKey ||
+                !cookieValue.pineconeEnvironment ||
                 !cookieValue.pineconeApiKey
               }
               onClick={handleGithubUpload}

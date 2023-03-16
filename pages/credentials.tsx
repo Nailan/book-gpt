@@ -22,6 +22,9 @@ import { Label } from "@/components/ui/label"
 export default function CredentailsPage() {
   const { cookieValue, setAndSaveCookieValue } = useCredentialsCookie()
   const [openaiApiKey, setOpenaiApiKey] = useState(cookieValue.openaiApiKey)
+  const [pineconeEnvironment, setPineconeEnvironment] = useState(
+    cookieValue.pineconeEnvironment
+  )
   const [pineconeApiKey, setPineconeApiKey] = useState(
     cookieValue.pineconeApiKey
   )
@@ -31,6 +34,9 @@ export default function CredentailsPage() {
 
   const handleOpenaiApiKeyChange = (e) => {
     setOpenaiApiKey(e.target.value)
+  }
+  const handlePineconeEnvironmentChange = (e) => {
+    setPineconeEnvironment(e.target.value)
   }
   const handlePineconeApiKeyChange = (e) => {
     setPineconeApiKey(e.target.value)
@@ -42,6 +48,7 @@ export default function CredentailsPage() {
   const handleSaveCredentials = () => {
     setAndSaveCookieValue({
       openaiApiKey,
+      pineconeEnvironment,
       pineconeApiKey,
       githubPersonalToken,
     })
@@ -90,6 +97,18 @@ export default function CredentailsPage() {
                     onChange={handleOpenaiApiKeyChange}
                   />
                 </div>
+                <div className="grid grid-cols-4 items-center gap-4">
+                  <Label htmlFor="pinecone-environment" className="text-right">
+                    Pinecone Environment
+                  </Label>
+                  <Input
+                    id="pinecone-environment"
+                    value={pineconeEnvironment}
+                    className="col-span-3"
+                    onChange={handlePineconeEnvironmentChange}
+                  />
+                </div>
+
                 <div className="grid grid-cols-4 items-center gap-4">
                   <Label htmlFor="pinecone-api-key" className="text-right">
                     Pinecone API Key

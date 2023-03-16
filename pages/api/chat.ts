@@ -16,7 +16,7 @@ export default async function handler(
 
   try {
     await pinecone.init({
-      environment: "us-west1-gcp",
+      environment: credentials.pineconeEnvironment,
       apiKey: credentials.pineconeApiKey,
     })
 
