@@ -36,6 +36,7 @@ export default async function handler(
   try {
     const index = await createPineconeIndex({
       pineconeApiKey: credentials.pineconeApiKey,
+      pineconeEnvironment: credentials.pineconeEnvironment,
       pineconeIndexName: PINECONE_INDEX_NAME,
     })
     const chunkSize = 100
