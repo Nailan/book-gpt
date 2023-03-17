@@ -10,8 +10,6 @@ import { fileConsumer, formidablePromise } from "@/lib/formidable"
 import { getTextContentFromPDF } from "@/lib/pdf"
 import { chunk } from "@/lib/utils"
 
-const PINECONE_INDEX_NAME = "book-gpt"
-
 const formidableConfig = {
   keepExtensions: true,
   maxFileSize: 10_000_000,
@@ -34,6 +32,7 @@ export async function handler(req: NextApiRequest, res: NextApiResponse) {
 
   const openaiApiKey = fields["openai-api-key"]
   const pineconeEnvironment = fields["pinecone-environment"]
+  const pineconeIndex = fields["pinecone-index"]
   const pineconeApiKey = fields["pinecone-api-key"]
 
   const docs = await Promise.all(
@@ -71,7 +70,7 @@ export async function handler(req: NextApiRequest, res: NextApiResponse) {
       apiKey: pineconeApiKey,
     })
 
-    const index = pinecone.Index(PINECONE_INDEX_NAME)
+    const index = pinecone.Index(pineconeIndex)
     const chunkSize = 100
     const chunks = chunk(flatDocs, chunkSize)
 

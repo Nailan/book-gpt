@@ -25,6 +25,7 @@ export default function CredentailsPage() {
   const [pineconeEnvironment, setPineconeEnvironment] = useState(
     cookieValue.pineconeEnvironment
   )
+  const [pineconeIndex, setPineconeIndex] = useState(cookieValue.pineconeIndex)
   const [pineconeApiKey, setPineconeApiKey] = useState(
     cookieValue.pineconeApiKey
   )
@@ -38,6 +39,9 @@ export default function CredentailsPage() {
   const handlePineconeEnvironmentChange = (e) => {
     setPineconeEnvironment(e.target.value)
   }
+  const handlePineconeIndexChange = (e) => {
+    setPineconeIndex(e.target.value)
+  }
   const handlePineconeApiKeyChange = (e) => {
     setPineconeApiKey(e.target.value)
   }
@@ -49,6 +53,7 @@ export default function CredentailsPage() {
     setAndSaveCookieValue({
       openaiApiKey,
       pineconeEnvironment,
+      pineconeIndex,
       pineconeApiKey,
       githubPersonalToken,
     })
@@ -97,6 +102,20 @@ export default function CredentailsPage() {
                     onChange={handleOpenaiApiKeyChange}
                   />
                 </div>
+
+                <div className="grid grid-cols-4 items-center gap-4">
+                  <Label htmlFor="pinecone-api-key" className="text-right">
+                    Pinecone API Key
+                  </Label>
+                  <Input
+                    id="pinecone-api-key"
+                    value={pineconeApiKey}
+                    placeholder="*****-****-****"
+                    className="col-span-3"
+                    onChange={handlePineconeApiKeyChange}
+                  />
+                </div>
+
                 <div className="grid grid-cols-4 items-center gap-4">
                   <Label htmlFor="pinecone-environment" className="text-right">
                     Pinecone Environment
@@ -110,15 +129,14 @@ export default function CredentailsPage() {
                 </div>
 
                 <div className="grid grid-cols-4 items-center gap-4">
-                  <Label htmlFor="pinecone-api-key" className="text-right">
-                    Pinecone API Key
+                  <Label htmlFor="pinecone-index" className="text-right">
+                    Pinecone Index Name
                   </Label>
                   <Input
-                    id="pinecone-api-key"
-                    value={pineconeApiKey}
-                    placeholder="*****-****-****"
+                    id="pinecone-index"
+                    value={pineconeIndex}
                     className="col-span-3"
-                    onChange={handlePineconeApiKeyChange}
+                    onChange={handlePineconeIndexChange}
                   />
                 </div>
 
